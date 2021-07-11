@@ -50,6 +50,7 @@ def Simulate(alpha, gamma, N, seed):
                 # The state goes back to 0', which is -1 here
                 # The pool publishes their one hidden block immediately, and the length of chains becomes the same
                 hiddenBlocks -= 1
+                ChainLength += 1
                 state = -1
 
         elif state == -1:
@@ -61,23 +62,23 @@ def Simulate(alpha, gamma, N, seed):
                 # State goes back to 0.
                 # Chain length increases one (Selfish Pool's chain)
                 state = 0
-                ChainLength += 2
+                ChainLength += 1
                 SelfishRevenue += 2
 
             elif r <= alpha + (1 - alpha) * gamma:
                 # Honest miners choose to mine on the pool's block
                 # State goes back to 0.
-                # Chain length increases one (Selfish Pool's chain)
+                # Chain length increases two (Selfish Pool's chain)
                 state = 0
-                ChainLength += 2
+                ChainLength += 1
                 SelfishRevenue += 1
 
             else:
                 # Honest miners choose to mine on the public block.
                 # State goes back to 0.
-                # Chain length increases one (Public Pool's chain)
+                # Chain length increases two (Public Pool's chain)
                 state = 0
-                ChainLength += 2
+                ChainLength += 1
 
         elif state == 2:
             # The selfish pool has 2 hidden block.
