@@ -104,10 +104,10 @@ def Simulate(alpha, gamma, N, seed):
 
             else:
                 # The honest miners found a block
-                hiddenBlocks -= 2
-                ChainLength += 2
-                SelfishRevenue += 2
-                state -= 2
+                hiddenBlocks -= 1
+                ChainLength += 1
+                SelfishRevenue += 1
+                state -= 1
 
     return float(SelfishRevenue) / ChainLength
 
@@ -118,11 +118,11 @@ def Simulate(alpha, gamma, N, seed):
 """
 
 
-# let's run the code with the following parameters!
-alpha=0.35
-gamma=0.5
-Nsimu=10**7
-seed = 100
-# This is the theoretical probability computed in the original paper
-print("Theoretical probability :",(alpha*(1-alpha)**2*(4*alpha+gamma*(1-2*alpha))-alpha**3)/(1-alpha*(1+(2-alpha)*alpha)))
-print("Simulated probability :",Simulate(alpha,gamma,Nsimu, seed))
+# # let's run the code with the following parameters!
+# alpha=0.35
+# gamma=0.5
+# Nsimu=10**7
+# seed = 100
+# # This is the theoretical probability computed in the original paper
+# print("Theoretical probability :",(alpha*(1-alpha)**2*(4*alpha+gamma*(1-2*alpha))-alpha**3)/(1-alpha*(1+(2-alpha)*alpha)))
+# print("Simulated probability :",Simulate(alpha,gamma,Nsimu, seed))
