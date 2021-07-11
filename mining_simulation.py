@@ -15,7 +15,7 @@ def Simulate(alpha, gamma, N, seed):
     # the revenue of the selfish mining pool
     SelfishRevenue = 0
 
-    #the number of hidden blocks of the selfish mining pool
+    # the number of hidden blocks of the selfish mining pool
     hiddenBlocks = 0
 
     # A round begin when the state=0
@@ -52,7 +52,6 @@ def Simulate(alpha, gamma, N, seed):
                 hiddenBlocks -= 1
                 state = -1
 
-
         elif state == -1:
             # It's the state 0' in the slides (the paper of Eyal and Gun Sirer)
             # There are three situations!
@@ -62,7 +61,7 @@ def Simulate(alpha, gamma, N, seed):
                 # State goes back to 0.
                 # Chain length increases one (Selfish Pool's chain)
                 state = 0
-                ChainLength += 1
+                ChainLength += 2
                 SelfishRevenue += 2
 
             elif r <= alpha + (1 - alpha) * gamma:
@@ -70,7 +69,7 @@ def Simulate(alpha, gamma, N, seed):
                 # State goes back to 0.
                 # Chain length increases one (Selfish Pool's chain)
                 state = 0
-                ChainLength += 1
+                ChainLength += 2
                 SelfishRevenue += 1
 
             else:
@@ -78,7 +77,7 @@ def Simulate(alpha, gamma, N, seed):
                 # State goes back to 0.
                 # Chain length increases one (Public Pool's chain)
                 state = 0
-                ChainLength += 1
+                ChainLength += 2
 
         elif state == 2:
             # The selfish pool has 2 hidden block.
@@ -118,11 +117,11 @@ def Simulate(alpha, gamma, N, seed):
 """
 
 
-# # let's run the code with the following parameters!
-# alpha=0.35
-# gamma=0.5
-# Nsimu=10**7
-# seed = 100
-# # This is the theoretical probability computed in the original paper
-# print("Theoretical probability :",(alpha*(1-alpha)**2*(4*alpha+gamma*(1-2*alpha))-alpha**3)/(1-alpha*(1+(2-alpha)*alpha)))
-# print("Simulated probability :",Simulate(alpha,gamma,Nsimu, seed))
+# let's run the code with the following parameters!
+alpha=0.35
+gamma=0.5
+Nsimu=10**7
+seed = 100
+# This is the theoretical probability computed in the original paper
+print("Theoretical probability :",(alpha*(1-alpha)**2*(4*alpha+gamma*(1-2*alpha))-alpha**3)/(1-alpha*(1+(2-alpha)*alpha)))
+print("Simulated probability :",Simulate(alpha,gamma,Nsimu, seed))
